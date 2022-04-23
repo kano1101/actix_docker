@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  actix_infra:
+    container_name: actix_infra
+    image: mysql/mysql-server:5.7.28
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: prism_db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3318:3306"
+    volumes:
+      - ./gateways/store/mysql/conf.d:/etc/mysql/conf.d
+      - ./gateways/store/db/mysql_data:/var/lib/mysql
+  actix_api:
+    container_name: actix_api
+    build:
+      context: ./api
+      dockerfile: .
+    ports:
+      - "8086:8086"
+    depends_on:
+      - actix_infra

@@ -1,0 +1,14 @@
+[package]
+name = "gateways"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenv = "0.15.0"
+diesel = { version = "1.4.8", features = ["mysql"] }
+transaction = "0.2.1"
+transaction-diesel-mysql = { git = "https://github.com/kano1101/transaction-diesel-mysql.git" }
+speculate = "0.1.2"
+
+[lib]
+doctest = false
