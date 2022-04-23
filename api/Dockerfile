@@ -1,5 +1,4 @@
 FROM rust:1.60.0 as builder
-# FROM rust:1.55.0 as builder
 
 RUN USER=root cargo new --bin app
 WORKDIR /app
@@ -19,5 +18,5 @@ RUN cargo install --locked --path .
 FROM debian:buster-slim
 RUN apt-get update && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /app/target/release/api .
-EXPOSE 8080
+EXPOSE 8086
 CMD ["./api"]

@@ -9,7 +9,7 @@ async fn get() -> impl Responder {
     HttpResponse::Ok().body("get ok")
 }
 
-#[actix_web::main] // or #[tokio::main]
+#[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
